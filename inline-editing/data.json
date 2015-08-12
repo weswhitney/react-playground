@@ -1,0 +1,18 @@
+[
+  {
+    "title": "salad bar specialist",
+    "company": "pizza hut",
+    "from": "2009",
+    "to": "2012",
+    "location": "Denver",
+    "description": "stuff about the discription"
+  },
+  {
+    "title": "cook",
+    "company": "subway",
+    "from": "2005",
+    "to": "2008",
+    "location": "Aurora",
+    "description": "total cool making sandwich artistry"
+  }
+]

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script src="https://fb.me/react-0.13.3.js"></script>
+    <script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+
+    <script type="text/jsx">
+      var Greeting = React.createClass({
+        render: function () {
+          return <h1>Hello React</h1>
+        }
+      });
+      
+      React.render(
+        <Greeting />,
+        document.body);
+    </script>
+  </body>
+</html>
