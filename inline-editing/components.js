@@ -1,4 +1,4 @@
-var EditInline = React.createClass({
+var ExperienceBox = React.createClass({
   loadCommentsFromServer: function () {
     $.ajax({
       url: this.props.url,
@@ -12,18 +12,46 @@ var EditInline = React.createClass({
       }.bind(this)
     });
   },
+  componentDidMount: function () {
+    this.loadCommentsFromServer();
+    setInterval(this.loadCommentsFromServer, this.props.pollInterval);
+  },
   getInitialState: function(){
     return {data: []};
   },
-  componentDidMount: function () {
-
-  },
   render: function () {
-    return <h1>hello data={this.state.data}</h1>;
+    return <h1>{this.state.data}</h1>;
   }
 });
 
+// var ExperienceList = React.createClass({
+//   render: function () {
+//     var experienceNodes = this.props.data.map(function (experience) {
+//       return (
+//         <Experience title={experience.title}>
+//           {experience.company}
+//         </Experience>
+//       );
+//     });
+//     return (
+//       <div className="ExperienceList">
+//         {experienceNodes}
+//       </div>
+//     );
+//   }
+// });
+//
+// var Experience = React.createClass({
+//   render: function () {
+//     return (
+//       <div className="experience">
+//         {this.props.data.title}
+//       </div>
+//     );
+//   }
+// });
+
 React.render(
-  <EditInline url="data.json" />,
+  <ExperienceBox url="data.json" />,
   document.getElementById('edit')
 );
