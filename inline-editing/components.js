@@ -20,38 +20,46 @@ var ExperienceBox = React.createClass({
     return {data: []};
   },
   render: function () {
-    return <h1>{this.state.data}</h1>;
+    return (
+      <div className="experienceBox">
+        <h1>Experience</h1>
+        <ExperienceList data={this.state.data} />
+      </div>
+    );
   }
 });
 
-// var ExperienceList = React.createClass({
-//   render: function () {
-//     var experienceNodes = this.props.data.map(function (experience) {
-//       return (
-//         <Experience title={experience.title}>
-//           {experience.company}
-//         </Experience>
-//       );
-//     });
-//     return (
-//       <div className="ExperienceList">
-//         {experienceNodes}
-//       </div>
-//     );
-//   }
-// });
-//
-// var Experience = React.createClass({
-//   render: function () {
-//     return (
-//       <div className="experience">
-//         {this.props.data.title}
-//       </div>
-//     );
-//   }
-// });
+var ExperienceList = React.createClass({
+  render: function () {
+    var experienceNodes = this.props.data.map(function (experience) {
+      return (
+        <Experience title={experience.title}>
+          {experience.company}
+        </Experience>
+      );
+    })
+      return (
+        <div className="experienceList">
+          {experienceNodes}
+        </div>
+      );
+    }
+});
+
+var Experience = React.createClass({
+  render: function () {
+    return (
+      <div className="experience">
+        <h2 className="experienceTitle">
+        {this.props.title}
+        </h2>
+        {this.props.children}
+      </div>
+    );
+  }
+});
 
 React.render(
-  <ExperienceBox url="data.json" />,
+  <ExperienceBox url="jobs.json" pollInterval={2000} />,
   document.getElementById('edit')
 );

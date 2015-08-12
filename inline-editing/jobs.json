@@ -14,5 +14,13 @@
     "to": "2008",
     "location": "Aurora",
     "description": "total cool making sandwich artistry"
+  },
+  {
+    "title": "barback",
+    "company": "DBC",
+    "from": "2004",
+    "to": "2002",
+    "location": "Los Angeles",
+    "description": "filled ice and cut fruit"
   }
 ]
