@@ -21,7 +21,7 @@ var ExperienceBox = React.createClass({
   },
   render: function () {
     // console.log(this.state.data);
-        //Experience list is a child, parent is saying "here, take my state.  you can now use data."
+    //Experience list is a child, parent is saying "here, take my state.  you can now use data."
     return (
       <div className="experienceBox">
           <div className="clearfix border--bottom mb1">
@@ -52,6 +52,7 @@ var ExperienceList = React.createClass({
     // console.log(experienceNodes);
       return (
         <div className="experienceList">
+          <a className="button button--medium button--outline float-right" href="">Edit</a>
           {experienceNodes}
         </div>
       );
@@ -63,7 +64,6 @@ var Experience = React.createClass({
     // console.log(this.props.children);
     return (
         <div className="experience">
-          <a className="button button--medium button--outline float-right" href="">Edit</a>
           <span className="block"> {this.props.company} </span>
           <span className="block">{this.props.title} </span>
           <span className="block">{this.props.from} - {this.props.to} {this.props.location} </span>
