@@ -28,7 +28,7 @@ var ExperienceBox = React.createClass({
             <h2 className="float-left">Experience</h2>
             <ExperienceList data={this.state.data} />
           </div>
-          <ExperienceForm />
+          { this.state.showResults ? <ExperienceForm /> : null }
       </div>
     );
   }
@@ -75,15 +75,15 @@ var Experience = React.createClass({
 });
 
 var EditButton = React.createClass({
-  // getInitialState: function () {
-  //
-  // },
-  // handleClick: function () {
-  //
-  // },
+  getInitialState: function () {
+    return {showResults: false};
+  },
+  handleClick: function () {
+    this.setState({showResults: true})
+  },
   render: function () {
     return (
-      <a className="button button--medium button--outline float-right" href="">Edit</a>
+      <button className="button button--medium button--outline float-right" onClick={this.handleClick}>Edit</button>
     );
   }
 });
