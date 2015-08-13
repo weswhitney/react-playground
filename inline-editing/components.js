@@ -12,18 +12,23 @@ var ExperienceBox = React.createClass({
       }.bind(this)
     });
   },
+  getInitialState: function(){
+    return {data: []};
+  },
   componentDidMount: function () {
     this.loadCommentsFromServer();
     setInterval(this.loadCommentsFromServer, this.props.pollInterval);
   },
-  getInitialState: function(){
-    return {data: []};
-  },
   render: function () {
+    // console.log(this.state.data);
     return (
       <div className="experienceBox">
-        <h1>Experience</h1>
-        <ExperienceList data={this.state.data} />
+        //Experience list is a child, parent is saying "here, take my state.  you can now use data."
+          <div className="clearfix border--bottom mb1">
+            <h2 className="float-left">Experience</h2>
+            <a className="button button--medium button--outline float-right" href="">Edit</a>
+            <ExperienceList data={this.state.data} />
+          </div>
       </div>
     );
   }
@@ -31,15 +36,24 @@ var ExperienceBox = React.createClass({
 
 var ExperienceList = React.createClass({
   render: function () {
+    console.log(this.props);
+    //this is the child using the state passed from the parent, they access it using props.
     var experienceNodes = this.props.data.map(function (experience) {
       return (
-        <Experience title={experience.title}>
-          {experience.company}
+        <Experience
+          title={experience.title}
+          company={experience.company}
+          from={experience.from}
+          to={experience.to}
+          location={experience.location}
+          description={experience.description}>
         </Experience>
       );
-    })
+    });
+    // console.log(experienceNodes);
       return (
         <div className="experienceList">
+            <Experience />
           {experienceNodes}
         </div>
       );
@@ -48,16 +62,17 @@ var ExperienceList = React.createClass({
 
 var Experience = React.createClass({
   render: function () {
+    // console.log(this.props.children);
     return (
-      <div className="experience">
-        <h2 className="experienceTitle">
-        {this.props.title}
-        </h2>
-        {this.props.children}
-      </div>
+        <span className="experience">
+          <span className="block">{this.props.title}</span>
+          <span className="block">{this.props.from} - {this.props.to} {this.props.location}</span>
+          <span className="block">{this.props.description}</span>
+        </span>
     );
   }
 });
+
 
 React.render(
   <ExperienceBox url="jobs.json" pollInterval={2000} />,
