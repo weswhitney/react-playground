@@ -1,5 +1,5 @@
 var ExperienceBox = React.createClass({
-  loadCommentsFromServer: function () {
+  loadJobsFromServer: function () {
     $.ajax({
       url: this.props.url,
       dataType: 'json',
@@ -16,8 +16,8 @@ var ExperienceBox = React.createClass({
     return {data: []};
   },
   componentDidMount: function () {
-    this.loadCommentsFromServer();
-    setInterval(this.loadCommentsFromServer, this.props.pollInterval);
+    this.loadJobsFromServer();
+    setInterval(this.loadJobsFromServer, this.props.pollInterval);
   },
   render: function () {
     // console.log(this.state.data);
@@ -52,7 +52,7 @@ var ExperienceList = React.createClass({
     // console.log(experienceNodes);
       return (
         <div className="experienceList">
-          <a className="button button--medium button--outline float-right" href="">Edit</a>
+          <EditButton />
           {experienceNodes}
         </div>
       );
@@ -69,6 +69,20 @@ var Experience = React.createClass({
           <span className="block">{this.props.from} - {this.props.to} {this.props.location} </span>
           <span className="block">{this.props.description}</span>
         </div>
+    );
+  }
+});
+
+var EditButton = React.createClass({
+  // getInitialState: function () {
+  //
+  // },
+  // handleClick: function () {
+  //
+  // },
+  render: function () {
+    return (
+      <a className="button button--medium button--outline float-right" href="">Edit</a>
     );
   }
 });
