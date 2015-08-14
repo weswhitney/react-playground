@@ -90,45 +90,39 @@ var ExperienceForm = React.createClass({
               <a className="button button--medium button--outline" href="">Cancel</a>
               <a className="button button--medium button--primary" href="">Save</a>
             </div>
-            <FormFields />
+            <div className="formFields">
+              <div className="mb1">
+                <span className="block bold">Title</span>
+                <input className="form-control border--full full-width" type="text" />
+              </div>
+              <div className="mb1">
+                <span className="block bold">Company</span>
+                <input className="form-control border--full full-width" type="text" />
+              </div>
+              <div className="mb1">
+                <span className="block bold">From</span>
+                <input className="form-control border--full full-width" type="text" />
+              </div>
+              <div className="mb1">
+                <span className="block bold">To</span>
+                <input className="form-control border--full full-width" type="text" />
+              </div>
+              <div className="mb1">
+                <span className="block bold">Location</span>
+                <input className="form-control border--full full-width" type="text" />
+              </div>
+              <div className="mb1">
+                <span className="block bold">Description</span>
+                <input className="form-control border--full full-width" type="text" />
+              </div>
+            </div>
           </div>
       </div>
     );
   }
 });
 
-var FormFields = React.createClass({
-  render: function () {
-    return(
-      <div className="formFields">
-        <div className="mb1">
-          <span className="block bold">Title</span>
-          <input className="form-control border--full full-width" type="text" />
-        </div>
-        <div className="mb1">
-          <span className="block bold">Company</span>
-          <input className="form-control border--full full-width" type="text" />
-        </div>
-        <div className="mb1">
-          <span className="block bold">From</span>
-          <input className="form-control border--full full-width" type="text" />
-        </div>
-        <div className="mb1">
-          <span className="block bold">To</span>
-          <input className="form-control border--full full-width" type="text" />
-        </div>
-        <div className="mb1">
-          <span className="block bold">Location</span>
-          <input className="form-control border--full full-width" type="text" />
-        </div>
-        <div className="mb1">
-          <span className="block bold">Description</span>
-          <input className="form-control border--full full-width" type="text" />
-        </div>
-      </div>
-    );
-  }
-});
+
 
 React.render(
   <ExperienceBox url="jobs.json" pollInterval={2000} />,
