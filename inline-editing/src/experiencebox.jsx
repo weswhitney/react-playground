@@ -14,11 +14,11 @@ var ExperienceBox = React.createClass({
   },
 
   getInitialState: function(){
-    return {notEditing: true, data: []};
+    return {editing: false, data: []};
   },
 
   startEdit: function () {
-    this.setState({notEditing: false});
+    this.setState({editing: true});
   },
 
   componentDidMount: function () {
@@ -29,13 +29,13 @@ var ExperienceBox = React.createClass({
   render: function () {
     // console.log(this.state.data);
     //Experience list is a child, parent is saying "here, take my state.  you can now use data."
-    return this.state.notEditing ? (
+    return this.state.editing ? (
+          <ExperienceForm onEdit={this.startEdit} />
+        ) : (
           <div className="clearfix border--bottom mb1">
             <h2 className="float-left">Experience</h2>
             <ExperienceList data={this.state.data} />
           </div>
-        ) : (
-          <ExperienceForm onEdit={this.startEdit} />
     );
   }
 });
