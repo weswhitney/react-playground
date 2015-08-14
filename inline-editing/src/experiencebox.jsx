@@ -30,10 +30,11 @@ var ExperienceBox = React.createClass({
     // console.log(this.state.data);
     //Experience list is a child, parent is saying "here, take my state.  you can now use data."
     return this.state.editing ? (
-          <ExperienceForm onEdit={this.startEdit} />
+          <ExperienceForm />
         ) : (
           <div className="clearfix border--bottom mb1">
             <h2 className="float-left">Experience</h2>
+            <button className="button button--medium button--outline float-right" href="" onClick={this.startEdit} >Edit</button>
             <ExperienceList data={this.state.data} />
           </div>
     );
@@ -59,7 +60,6 @@ var ExperienceList = React.createClass({
     // console.log(experienceNodes);
       return (
         <div className="experienceList">
-          <EditButton />
           {experienceNodes}
         </div>
       );
@@ -76,20 +76,6 @@ var Experience = React.createClass({
           <span className="block">{this.props.from} - {this.props.to} {this.props.location} </span>
           <span className="block">{this.props.description}</span>
         </div>
-    );
-  }
-});
-
-var EditButton = React.createClass({
-  getInitialState: function () {
-    return {showResults: false};
-  },
-  handleClick: function () {
-    this.setState({showResults: true})
-  },
-  render: function () {
-    return (
-      <button className="button button--medium button--outline float-right" href="" onClick={this.handleClick}>Edit</button>
     );
   }
 });
