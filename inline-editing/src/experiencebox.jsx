@@ -13,21 +13,6 @@ var ExperienceBox = React.createClass({
     });
   },
 
-    handleExperienceSubmit: function (experience) {
-    var experiences = this.state.data;
-    var newExperiences = experiences.concat([experience]);
-    this.setState({data: newExperiences});
-    $.ajax({
-      url: this.props.url,
-      dataType: 'json',
-      type: 'POST',
-      data: experience,
-      success: function (data) {
-        this.setState({data: data});
-      }.bind(this)
-    });
-  },
-
   getInitialState: function(){
     return {editing: false, data: []};
   },
@@ -42,23 +27,23 @@ var ExperienceBox = React.createClass({
   },
 
   render: function () {
-    // console.log(this.state.data);
-    //Experience list is a child, parent is saying "here, take my state.  you can now use data."
-    return this.state.editing ? (
-          <ExperienceForm />
-        ) : (
-          <div className="clearfix border--bottom mb1">
-            <h2 className="float-left">Experience</h2>
-            <button className="button button--medium button--outline float-right" href="" onClick={this.startEdit} >Edit</button>
-            <ExperienceList data={this.state.data} />
-          </div>
+  // console.log(this.state.data);
+  //Experience list is a child, parent is saying "here, take my state.  you can now use data."
+  return this.state.editing ? (
+    <ExperienceForm data={this.state.data}/>
+    ) : (
+      <div className="clearfix border--bottom mb1">
+        <h2 className="float-left">Experience</h2>
+        <button className="button button--medium button--outline float-right" href="" onClick={this.startEdit} >Edit</button>
+        <ExperienceList data={this.state.data} />
+      </div>
     );
   }
 });
 
 var ExperienceList = React.createClass({
   render: function () {
-    console.log(this.props);
+    // console.log(this.props);
     //this is the child using the state passed from the parent, they access it using props.
     var experienceNodes = this.props.data.map(function (experience) {
       return (
@@ -83,7 +68,7 @@ var ExperienceList = React.createClass({
 
 var Experience = React.createClass({
   render: function () {
-    // console.log(this.props.children);
+    // console.log(this.props);
     return (
         <div className="experience">
           <span className="block"> {this.props.company} </span>
@@ -96,29 +81,24 @@ var Experience = React.createClass({
 });
 
 var ExperienceForm = React.createClass({
-  handleSubmit: function (e) {
-    e.preventDefault();
-    var title = React.findDOMNode(this.refs.title).value.trim();
-    var company = React.findDOMNode(this.refs.company).value.trim();
-    var fromDate = React.findDOMNode(this.refs.fromDate).value.trim();
-    var to = React.findDOMNode(this.refs.to).value.trim();
-    var description = React.findDOMNode(this.refs.description).value.trim();
-    var location = React.findDOMNode(this.refs.location).value.trim();
-    if (!title || !company || !fromDate || !to || !description) {
-      return;
-    }
-    this.props.onExperienceSubmit({title: title, company: company, fromDate: fromDate, to: to, description: description, location: location});
-    React.findDOMNode(this.refs.title).value = '';
-    React.findDOMNode(this.refs.company).value = '';
-    React.findDOMNode(this.refs.fromDate).value = '';
-    React.findDOMNode(this.refs.to).value = '';
-    React.findDOMNode(this.refs.description).value = '';
-    React.findDOMNode(this.refs.location).value = '';
-    return;
-  },
   render: function () {
+
+    var experienceNodes = this.props.data.map(function (experience) {
+      return (
+        <Experience
+          title={experience.title}
+          company={experience.company}
+          from={experience.fromDate}
+          to={experience.to}
+          location={experience.location}
+          description={experience.description}>
+        </Experience>
+      );
+    });
+
+    // console.log(this.props.data);
     return (
-      <div className="experienceForm" onSubmit={this.handleSubmit}>
+      <form className="experienceForm">
           <div className="clearfix border--bottom mb1">
             <h2 className="float-left">Experience</h2>
             <div className="float-right">
@@ -128,7 +108,7 @@ var ExperienceForm = React.createClass({
             <div className="formFields">
               <div className="mb1">
                 <span className="block bold">Title</span>
-                <input className="form-control border--full full-width" type="text" ref="title" />
+                <input className="form-control border--full full-width" type="text" defaultValue={this.props.title} ref="title" />
               </div>
               <div className="mb1">
                 <span className="block bold">Company</span>
@@ -152,7 +132,7 @@ var ExperienceForm = React.createClass({
               </div>
             </div>
           </div>
-      </div>
+      </form>
     );
   }
 });
