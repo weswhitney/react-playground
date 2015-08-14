@@ -82,20 +82,6 @@ var Experience = React.createClass({
 
 var ExperienceForm = React.createClass({
   render: function () {
-
-    var experienceNodes = this.props.data.map(function (experience) {
-      return (
-        <Experience
-          title={experience.title}
-          company={experience.company}
-          from={experience.fromDate}
-          to={experience.to}
-          location={experience.location}
-          description={experience.description}>
-        </Experience>
-      );
-    });
-
     // console.log(this.props.data);
     return (
       <form className="experienceForm">
