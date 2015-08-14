@@ -28,7 +28,7 @@ var ExperienceBox = React.createClass({
             <h2 className="float-left">Experience</h2>
             <ExperienceList data={this.state.data} />
           </div>
-          { this.state.showResults ? <ExperienceForm /> : null }
+          <ExperienceForm />
       </div>
     );
   }
@@ -83,7 +83,7 @@ var EditButton = React.createClass({
   },
   render: function () {
     return (
-      <button className="button button--medium button--outline float-right" onClick={this.handleClick}>Edit</button>
+      <button className="button button--medium button--outline float-right" href="" onClick={this.handleClick}>Edit</button>
     );
   }
 });
