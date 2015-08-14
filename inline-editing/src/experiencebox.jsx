@@ -13,6 +13,21 @@ var ExperienceBox = React.createClass({
     });
   },
 
+    handleExperienceSubmit: function (experience) {
+    var experiences = this.state.data;
+    var newExperiences = experiences.concat([experience]);
+    this.setState({data: newExperiences});
+    $.ajax({
+      url: this.props.url,
+      dataType: 'json',
+      type: 'POST',
+      data: experience,
+      success: function (data) {
+        this.setState({data: data});
+      }.bind(this)
+    });
+  },
+
   getInitialState: function(){
     return {editing: false, data: []};
   },
@@ -88,40 +103,52 @@ var ExperienceForm = React.createClass({
     var fromDate = React.findDOMNode(this.refs.fromDate).value.trim();
     var to = React.findDOMNode(this.refs.to).value.trim();
     var description = React.findDOMNode(this.refs.description).value.trim();
+    var location = React.findDOMNode(this.refs.location).value.trim();
+    if (!title || !company || !fromDate || !to || !description) {
+      return;
+    }
+    this.props.onExperienceSubmit({title: title, company: company, fromDate: fromDate, to: to, description: description, location: location});
+    React.findDOMNode(this.refs.title).value = '';
+    React.findDOMNode(this.refs.company).value = '';
+    React.findDOMNode(this.refs.fromDate).value = '';
+    React.findDOMNode(this.refs.to).value = '';
+    React.findDOMNode(this.refs.description).value = '';
+    React.findDOMNode(this.refs.location).value = '';
+    return;
   },
   render: function () {
     return (
-      <div className="experienceForm">
+      <div className="experienceForm" onSubmit={this.handleSubmit}>
           <div className="clearfix border--bottom mb1">
             <h2 className="float-left">Experience</h2>
             <div className="float-right">
               <a className="button button--medium button--outline" href="">Cancel</a>
-              <a className="button button--medium button--primary" href="">Save</a>
+              <a className="button button--medium button--primary" href="" type="submit" value="Post">Save</a>
             </div>
             <div className="formFields">
               <div className="mb1">
                 <span className="block bold">Title</span>
-                <input className="form-control border--full full-width" type="text" />
+                <input className="form-control border--full full-width" type="text" ref="title" />
               </div>
               <div className="mb1">
                 <span className="block bold">Company</span>
-                <input className="form-control border--full full-width" type="text" />
+                <input className="form-control border--full full-width" type="text" ref="company" />
               </div>
               <div className="mb1">
                 <span className="block bold">From</span>
-                <input className="form-control border--full full-width" type="text" />
+                <input className="form-control border--full full-width" type="text" ref="fromDate" />
               </div>
               <div className="mb1">
                 <span className="block bold">To</span>
-                <input className="form-control border--full full-width" type="text" />
+                <input className="form-control border--full full-width" type="text" ref="to"/>
               </div>
               <div className="mb1">
                 <span className="block bold">Location</span>
-                <input className="form-control border--full full-width" type="text" />
+                <input className="form-control border--full full-width" type="text" ref="location" />
               </div>
               <div className="mb1">
                 <span className="block bold">Description</span>
-                <input className="form-control border--full full-width" type="text" />
+                <input className="form-control border--full full-width" type="text" ref="description"/>
               </div>
             </div>
           </div>
@@ -133,6 +160,6 @@ var ExperienceForm = React.createClass({
 
 
 React.render(
-  <ExperienceBox url="jobs.json" pollInterval={2000} />,
+  <ExperienceBox url="experiences.json" pollInterval={2000} />,
   document.getElementById('edit')
 );
