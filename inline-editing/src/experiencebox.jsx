@@ -12,24 +12,30 @@ var ExperienceBox = React.createClass({
       }.bind(this)
     });
   },
+
   getInitialState: function(){
-    return {data: []};
+    return {notEditing: true, data: []};
   },
+
+  startEdit: function () {
+    this.setState({notEditing: false});
+  },
+
   componentDidMount: function () {
     this.loadJobsFromServer();
     setInterval(this.loadJobsFromServer, this.props.pollInterval);
   },
+
   render: function () {
     // console.log(this.state.data);
     //Experience list is a child, parent is saying "here, take my state.  you can now use data."
-    return (
-      <div className="experienceBox">
+    return this.state.notEditing ? (
           <div className="clearfix border--bottom mb1">
             <h2 className="float-left">Experience</h2>
             <ExperienceList data={this.state.data} />
           </div>
-          <ExperienceForm />
-      </div>
+        ) : (
+          <ExperienceForm onEdit={this.startEdit} />
     );
   }
 });
