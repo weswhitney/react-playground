@@ -2,7 +2,7 @@
   {
     "title": "salad bar specialist",
     "company": "pizza hut",
-    "from": "1982",
+    "fromDate": "1982",
     "to": "1987",
     "location": "Denver",
     "description": "stuff about the discription"
@@ -10,7 +10,7 @@
   {
     "title": "Chef",
     "company": "DPAC",
-    "from": "2006",
+    "fromDate": "2006",
     "to": "2012",
     "location": "Aurora",
     "description": "total cool making sandwich artistry"
@@ -18,7 +18,7 @@
   {
     "title": "barback",
     "company": "country buffet",
-    "from": "2004",
+    "fromDate": "2004",
     "to": "2002",
     "location": "Los Angeles",
     "description": "filled ice and cut fruit"

@@ -50,7 +50,7 @@ var ExperienceList = React.createClass({
         <Experience
           title={experience.title}
           company={experience.company}
-          from={experience.from}
+          from={experience.fromDate}
           to={experience.to}
           location={experience.location}
           description={experience.description}>
@@ -73,7 +73,7 @@ var Experience = React.createClass({
         <div className="experience">
           <span className="block"> {this.props.company} </span>
           <span className="block">{this.props.title} </span>
-          <span className="block">{this.props.from} - {this.props.to} {this.props.location} </span>
+          <span className="block">{this.props.fromDate} - {this.props.to} {this.props.location} </span>
           <span className="block">{this.props.description}</span>
         </div>
     );
@@ -81,6 +81,14 @@ var Experience = React.createClass({
 });
 
 var ExperienceForm = React.createClass({
+  handleSubmit: function (e) {
+    e.preventDefault();
+    var title = React.findDOMNode(this.refs.title).value.trim();
+    var company = React.findDOMNode(this.refs.company).value.trim();
+    var fromDate = React.findDOMNode(this.refs.fromDate).value.trim();
+    var to = React.findDOMNode(this.refs.to).value.trim();
+    var description = React.findDOMNode(this.refs.description).value.trim();
+  },
   render: function () {
     return (
       <div className="experienceForm">
