@@ -50,14 +50,14 @@ var ExperienceList = React.createClass({
         <Experience
           title={experience.title}
           company={experience.company}
-          from={experience.fromDate}
+          fromDate={experience.fromDate}
           to={experience.to}
           location={experience.location}
           description={experience.description}>
         </Experience>
       );
     });
-    // console.log(experienceNodes);
+    console.log(experienceNodes);
       return (
         <div className="experienceList">
           {experienceNodes}
@@ -68,60 +68,84 @@ var ExperienceList = React.createClass({
 
 var Experience = React.createClass({
   render: function () {
-    // console.log(this.props);
+    console.log(this.props);
     return (
-        <div className="experience">
-          <span className="block"> {this.props.company} </span>
-          <span className="block">{this.props.title} </span>
-          <span className="block">{this.props.fromDate} - {this.props.to} {this.props.location} </span>
-          <span className="block">{this.props.description}</span>
-        </div>
+      <div className="experience">
+        <span className="block"> {this.props.company} </span>
+        <span className="block">{this.props.title} </span>
+        <span className="block">{this.props.fromDate} - {this.props.to} {this.props.location} </span>
+        <span className="block">{this.props.description}</span>
+      </div>
     );
   }
 });
 
 var ExperienceForm = React.createClass({
   render: function () {
-    // console.log(this.props.data);
+    console.log(this.props);
+
+    var formNodes = this.props.data.map(function (experience) {
+      return (
+        <FormData
+          title={experience.title}
+          company={experience.company}
+          fromDate={experience.fromDate}
+          to={experience.to}
+          location={experience.location}
+          description={experience.description}>
+        </FormData>
+      );
+    });
+
     return (
       <form className="experienceForm">
-          <div className="clearfix border--bottom mb1">
-            <h2 className="float-left">Experience</h2>
-            <div className="float-right">
-              <a className="button button--medium button--outline" href="">Cancel</a>
-              <a className="button button--medium button--primary" href="" type="submit" value="Post">Save</a>
-            </div>
-            <div className="formFields">
-              <div className="mb1">
-                <span className="block bold">Title</span>
-                <input className="form-control border--full full-width" type="text" defaultValue={this.props.title} ref="title" />
-              </div>
-              <div className="mb1">
-                <span className="block bold">Company</span>
-                <input className="form-control border--full full-width" type="text" ref="company" />
-              </div>
-              <div className="mb1">
-                <span className="block bold">From</span>
-                <input className="form-control border--full full-width" type="text" ref="fromDate" />
-              </div>
-              <div className="mb1">
-                <span className="block bold">To</span>
-                <input className="form-control border--full full-width" type="text" ref="to"/>
-              </div>
-              <div className="mb1">
-                <span className="block bold">Location</span>
-                <input className="form-control border--full full-width" type="text" ref="location" />
-              </div>
-              <div className="mb1">
-                <span className="block bold">Description</span>
-                <input className="form-control border--full full-width" type="text" ref="description"/>
-              </div>
-            </div>
-          </div>
+        {formNodes}
       </form>
     );
   }
 });
+
+
+var FormData = React.createClass({
+  render: function () {
+    return (
+      <div className="clearfix border--bottom mb1">
+        <h2 className="float-left">Experience</h2>
+        <div className="float-right">
+          <a className="button button--medium button--outline" href="">Cancel</a>
+          <a className="button button--medium button--primary" href="" type="submit" value="Post">Save</a>
+        </div>
+        <div className="formFields">
+          <div className="mb1">
+            <span className="block bold">Title</span>
+            <input className="form-control border--full full-width" type="text" defaultValue={this.props.title} ref="title" />
+          </div>
+          <div className="mb1">
+            <span className="block bold">Company</span>
+            <input className="form-control border--full full-width" type="text" ref="company" />
+          </div>
+          <div className="mb1">
+            <span className="block bold">From</span>
+            <input className="form-control border--full full-width" type="text" ref="fromDate" />
+          </div>
+          <div className="mb1">
+            <span className="block bold">To</span>
+            <input className="form-control border--full full-width" type="text" ref="to"/>
+          </div>
+          <div className="mb1">
+            <span className="block bold">Location</span>
+            <input className="form-control border--full full-width" type="text" ref="location" />
+          </div>
+          <div className="mb1">
+            <span className="block bold">Description</span>
+            <input className="form-control border--full full-width" type="text" ref="description"/>
+          </div>
+        </div>
+      </div>
+    );
+  }
+});
+
 
 
 
