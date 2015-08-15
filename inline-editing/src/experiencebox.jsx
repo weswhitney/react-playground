@@ -122,23 +122,23 @@ var FormData = React.createClass({
           </div>
           <div className="mb1">
             <span className="block bold">Company</span>
-            <input className="form-control border--full full-width" type="text" ref="company" />
+            <input className="form-control border--full full-width" type="text" defaultValue={this.props.company} ref="company" />
           </div>
           <div className="mb1">
             <span className="block bold">From</span>
-            <input className="form-control border--full full-width" type="text" ref="fromDate" />
+            <input className="form-control border--full full-width" type="text" defaultValue={this.props.fromDate} ref="fromDate" />
           </div>
           <div className="mb1">
             <span className="block bold">To</span>
-            <input className="form-control border--full full-width" type="text" ref="to"/>
+            <input className="form-control border--full full-width" type="text" defaultValue={this.props.to} ref="to"/>
           </div>
           <div className="mb1">
             <span className="block bold">Location</span>
-            <input className="form-control border--full full-width" type="text" ref="location" />
+            <input className="form-control border--full full-width" type="text" defaultValue={this.props.location} ref="location" />
           </div>
           <div className="mb1">
             <span className="block bold">Description</span>
-            <input className="form-control border--full full-width" type="text" ref="description"/>
+            <input className="form-control border--full full-width" type="text" defaultValue={this.props.description} ref="description"/>
           </div>
         </div>
       </div>
